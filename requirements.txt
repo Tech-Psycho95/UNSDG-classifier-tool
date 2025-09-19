@@ -1,0 +1,6 @@
+pipeline
+sentence-transformers
+transformers
+requests
+numpy
+accelerate
