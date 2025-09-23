@@ -3,7 +3,7 @@ from flask_cors import CORS
 from classify import main as classify_text
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+CORS(app)
 
 @app.route('/api/hello', methods=['GET'])
 def hello():
