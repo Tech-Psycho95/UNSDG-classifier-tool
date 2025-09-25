@@ -1,0 +1,18 @@
+import React from "react";
+
+type RawResultsProps = {
+  results: unknown;
+};
+
+const RawResults: React.FC<RawResultsProps> = ({ results }) => {
+  return (
+    <div className="bg-white rounded-xl p-6 shadow-lg">
+      <h4 className="text-lg font-semibold text-gray-800 mb-2">Raw Results:</h4>
+      <pre className="bg-gray-100 rounded-lg p-4 overflow-auto text-sm">
+        {JSON.stringify(results, null, 2)}
+      </pre>
+    </div>
+  );
+};
+
+export default RawResults;
