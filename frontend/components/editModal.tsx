@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { ImCross } from "react-icons/im";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { IoAdd } from "react-icons/io5";
+import SDG from "./sdg";
 
 type EditModalProps = {
   editableResults: Record<string, number>;
@@ -17,6 +19,11 @@ const EditModal: React.FC<EditModalProps> = ({
   setIsModalOpen,
   saveEditedResults,
 }) => {
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [newSDGNumber, setNewSDGNumber] = useState("");
+  const [newSDGName, setNewSDGName] = useState("");
+  const [newSDGScore, setNewSDGScore] = useState(0.5);
+
   const updateEditableResult = (sdgKey: string, newValue: number) => {
     setEditableResults((prev) => ({
       ...prev,
@@ -30,6 +37,50 @@ const EditModal: React.FC<EditModalProps> = ({
       delete updated[sdgKey];
       return updated;
     });
+  };
+
+  const addNewSDG = () => {
+    if (newSDGNumber && newSDGName) {
+      const sdgKey = `SDG ${newSDGNumber}: ${newSDGName}`;
+
+      // Check if SDG already exists
+      if (editableResults[sdgKey]) {
+        alert("This SDG already exists!");
+        return;
+      }
+
+      setEditableResults((prev) => ({
+        ...prev,
+        [sdgKey]: newSDGScore,
+      }));
+
+      // Reset form
+      setNewSDGNumber("");
+      setNewSDGName("");
+      setNewSDGScore(0.5);
+      setShowAddForm(false);
+    }
+  };
+
+  const cancelAddSDG = () => {
+    setNewSDGNumber("");
+    setNewSDGName("");
+    setNewSDGScore(0.5);
+    setShowAddForm(false);
+  };
+
+  const handleSDGSelection = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedNumber = e.target.value;
+    setNewSDGNumber(selectedNumber);
+    // Automatically fill SDG name when number is selected
+    if (selectedNumber) {
+      const sdgNumber = parseInt(selectedNumber) as keyof typeof SDG;
+      if (SDG[sdgNumber]) {
+        setNewSDGName(SDG[sdgNumber]);
+      }
+    } else {
+      setNewSDGName("");
+    }
   };
 
   return (
@@ -50,9 +101,92 @@ const EditModal: React.FC<EditModalProps> = ({
 
         {/* Modal Content */}
         <div className="p-6 overflow-y-auto max-h-[60vh]">
-          <p className="text-gray-600 mb-4">
-            Adjust the confidence scores for each SDG goal (0.000 to 1.000)
-          </p>
+          <div className="flex justify-between items-center mb-4">
+            <p className="text-gray-600">
+              Adjust the confidence scores for each SDG goal (0.000 to 1.000)
+            </p>
+            <button
+              onClick={() => setShowAddForm(!showAddForm)}
+              className="flex items-center gap-2 px-3 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors text-sm"
+            >
+              <IoAdd className="w-4 h-4" />
+              Add New SDG
+            </button>
+          </div>
+
+          {/* Add New SDG Form */}
+          {showAddForm && (
+            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4 mb-4">
+              <h4 className="font-semibold text-gray-800 mb-3">
+                Add New SDG Goal
+              </h4>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    SDG Number
+                  </label>
+                  <select
+                    value={newSDGNumber}
+                    onChange={(e) => {
+                      handleSDGSelection(e);
+                    }}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  >
+                    <option value="">Select SDG Number</option>
+                    {Array.from({ length: 17 }, (_, i) => i + 1).map((num) => (
+                      <option key={num} value={num}>
+                        SDG {num}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    SDG Name
+                  </label>
+                  <input
+                    type="text"
+                    disabled
+                    value={newSDGName}
+                    onChange={(e) => setNewSDGName(e.target.value)}
+                    placeholder="e.g., Custom Goal Name"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Confidence Score
+                  </label>
+                  <input
+                    type="number"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    value={newSDGScore}
+                    onChange={(e) =>
+                      setNewSDGScore(parseFloat(e.target.value) || 0)
+                    }
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  />
+                </div>
+              </div>
+              <div className="flex justify-end gap-2 mt-4">
+                <button
+                  onClick={cancelAddSDG}
+                  className="px-4 py-2 text-gray-600 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition-colors text-sm"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={addNewSDG}
+                  className="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors text-sm"
+                >
+                  Add SDG
+                </button>
+              </div>
+            </div>
+          )}
+
           <div className="space-y-4">
             {Object.entries(editableResults)
               .sort(([, a], [, b]) => Number(b) - Number(a))

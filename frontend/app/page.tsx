@@ -1,15 +1,24 @@
 "use client";
 
 import { useState } from "react";
-
-
 import axios from "axios";
 import Loading from "@/components/loading";
 import Results from "@/components/results";
 import Error from "@/components/error";
 import MainScreen from "@/components/mainScreen";
 
+/**
+ * Main Application Component - UN SDG Advocate
+ *
+ * Flow:
+ * 1. User enters GitHub repository URL
+ * 2. App calls Flask backend for AI analysis
+ * 3. Results show SDG predictions with confidence levels
+ * 4. User can edit predictions via modal interface
+ * 5. User can create GitHub PR with analysis results
+ */
 export default function Home() {
+  // Core application state
   const [githubUrl, setGithubUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState<{
@@ -37,7 +46,7 @@ export default function Home() {
         // Make the actual API call
         const data = await determineGoals();
         setResults(data);
-        console.log("Processing completed:", data);
+        // console.log("Processing completed:", data);
       } catch (error) {
         console.error("Error processing repository:", error);
         setError("Failed to analyze repository. Please try again.");
