@@ -8,14 +8,14 @@ An AI-powered tool that analyzes GitHub repositories and determines their alignm
 - 📊 **Confidence Scoring**: Provides confidence levels (High/Medium/Low) for each SDG match
 - ✏️ **Interactive Editing**: Edit and modify SDG predictions through an intuitive modal interface
 - ➕ **Add/Remove SDGs**: Dynamically add or remove SDG predictions
-- 🔄 **Automatic Pull Requests**: Create GitHub pull requests with analysis results in JSON format
+- 📁 **Download the SDGs**: Download the SDG and upload it in your repository
 - 💻 **Modern UI**: Clean, responsive React.js interface with real-time loading states
 
 ## Architecture
 
 - **Frontend**: Next.js 14+ with TypeScript, Tailwind CSS, and React Icons
 - **Backend**: Flask API with AI classification using sentence-transformers
-- **Integration**: GitHub API for automated pull request creation
+- **Integration**: GitHub API for pulling repository information
 
 ## Quick Start
 
@@ -23,7 +23,6 @@ An AI-powered tool that analyzes GitHub repositories and determines their alignm
 
 - Node.js 18+ and npm
 - Python 3.8+
-- GitHub Personal Access Token (for PR functionality)
 
 ### 1. Clone and Setup
 
@@ -37,7 +36,6 @@ cd UNSDG-advocate
 ```bash
 cd backend
 pip install -r requirements.txt
-export GITHUB_TOKEN=your_github_token_here  # See GITHUB_SETUP.md for details
 python app.py
 ```
 
@@ -60,7 +58,7 @@ npm run dev
 2. **Analyze**: Click "Let's find out" to start AI analysis
 3. **Review Results**: View SDG predictions with confidence levels
 4. **Edit (Optional)**: Use "Maybe, we need some edits" to modify predictions
-5. **Create PR**: Click "Yes, that's our goal" to create a pull request with results
+5. **Create PR**: Click "Yes, Download SDG Analysis File" to create a pull request with results
 
 ## SDG Analysis Output
 
@@ -86,17 +84,7 @@ The tool generates a `unsdg.json` file containing:
 }
 ```
 
-## Configuration
 
-### GitHub Token Setup
-
-See `GITHUB_SETUP.md` for detailed instructions on creating and configuring your GitHub Personal Access Token.
-
-### Environment Variables
-
-```bash
-GITHUB_TOKEN=your_token_here  # Required for pull request functionality
-```
 
 ## API Endpoints
 
