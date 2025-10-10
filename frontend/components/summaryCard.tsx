@@ -17,7 +17,7 @@ const SummaryCard: React.FC<SummaryCardProps> = ({ predictions }) => {
         <div className="text-center">
           <div className="text-3xl font-bold">
             {
-              Object.values(predictions).filter((score) => Number(score) >= 0.4)
+              Object.values(predictions).filter((score) => Number(score) >= 0.7)
                 .length
             }
           </div>
@@ -26,7 +26,7 @@ const SummaryCard: React.FC<SummaryCardProps> = ({ predictions }) => {
         <div className="text-center">
           <div className="text-3xl font-bold">
             {
-              Object.values(predictions).filter((score) => Number(score) >= 0.7)
+              Object.values(predictions).filter((score) => Number(score) >= 0.9)
                 .length
             }
           </div>

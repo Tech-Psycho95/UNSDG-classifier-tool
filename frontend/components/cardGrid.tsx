@@ -24,11 +24,11 @@ const SDGCard = ({ sdgKey, confidence }: SDGCardProps) => {
   let colorClasses = "";
   let bgColor = "";
 
-  if (confidenceScore >= 0.8) {
+  if (confidenceScore >= 0.9) {
     confidenceLevel = "High";
     colorClasses = "text-green-700 border-green-300";
     bgColor = "bg-green-50";
-  } else if (confidenceScore >= 0.5) {
+  } else if (confidenceScore >= 0.7) {
     confidenceLevel = "Medium";
     colorClasses = "text-yellow-700 border-yellow-300";
     bgColor = "bg-yellow-50";
