@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import Goals from "@/assets/UNSDG Goals Image.jpg";
 import Image from "next/image";
+import axios from "axios";
 
 interface MainScreenProps {
   githubUrl: string;
@@ -15,6 +16,43 @@ const MainScreen: React.FC<MainScreenProps> = ({
   handleInteract,
   isLoading,
 }) => {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadMsg, setUploadMsg] = useState<string | null>(null);
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
+    setSelectedFile(file);
+    setUploadMsg(null);
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      setIsUploading(true);
+      const base = "http://127.0.0.1:5000/";
+      const response = await axios.post(base + "api/upload_md", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      if (!response.statusText || response.statusText !== "OK") {
+        throw new Error("File Upload Failed");
+      }
+      if (response.data && response.data.repo_url) {
+        setGithubUrl(response.data.repo_url);
+        setUploadMsg("File Uploaded Successfully!");
+      }
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      setUploadMsg("File Upload Failed. Please try again.");
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
   return (
     <main className="container mx-auto px-8 py-12">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -50,6 +88,33 @@ const MainScreen: React.FC<MainScreenProps> = ({
               </button>
             </div>
           </div>
+        </div>
+
+        {/* Upload your SDG.md file */}
+        <div className="flex items-center gap-4">
+          <input
+            type="file"
+            ref={fileInputRef}
+            accept=".md, text/markdown"
+            onChange={handleFileChange}
+            className="hidden"
+          />
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            disabled={isUploading}
+            className="px-6 py-3 bg-gray-100 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed rounded-2xl text-gray-800 font-medium border border-gray-200"
+          >
+            {isUploading ? "Uploading..." : "Upload your SDG.md file"}
+          </button>
+          {selectedFile && (
+            <span className="text-sm text-gray-600 truncate max-w-[50%">
+              {selectedFile.name}
+            </span>
+          )}
+          {uploadMsg && (
+            <span className="text-sm text-gray-500">{uploadMsg}</span>
+          )}
         </div>
 
         {/* Right Illustration */}

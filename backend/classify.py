@@ -80,6 +80,7 @@ def fetch_repo_text(url: str, max_issues: int = 10) -> Dict:
     except Exception:
         pass
 
+   
     # Issues (titles only, open ones)
     issues_texts = []
     try:
@@ -99,10 +100,12 @@ def fetch_repo_text(url: str, max_issues: int = 10) -> Dict:
     corpus = re.sub(r"[ \t]+", " ", corpus)
     corpus = re.sub(r"\n{2,}", "\n", corpus).strip()
 
-    return {
+    repo_text = {
         "owner": owner, "repo": repo, "text": corpus,
         "meta": {"name": name, "description": description, "topics": topics.split(), "homepage": homepage}
     }
+    
+    return repo_text
 
 # --- Zero-shot and embedding models (lazy-load) ---
 _zeroshot = None
@@ -126,8 +129,13 @@ def zero_shot_scores(text: str, labels: List[str]) -> np.ndarray:
     """
     clf = get_zeroshot()
     out = clf(text, labels, multi_label=True)
+    detailed_info = {
+        "labels" : out["labels"],
+        "scores" : out["scores"],
+        "sequence" : text[:500] + "..." if len(text) > 500 else text
+    }
     # transformers returns in label order provided
-    return np.array(out["scores"], dtype=float)
+    return np.array(out["scores"], dtype=float), detailed_info
 
 def embedding_similarity_scores(text: str, label_texts: List[str]) -> np.ndarray:
     """
@@ -154,12 +162,42 @@ def classify_repo(url: str, threshold: float = 0.4, top_k: int = 10, use_ensembl
         raise ValueError("No text extracted from this repository. Add README or description.")
 
     # Zero-shot on label NAMES *and* include SDG descriptions for embedding sim
-    zs = zero_shot_scores(text, SDG_NAMES)
+    zs, zs_details = zero_shot_scores(text, SDG_NAMES)
+
+    print("===== ZERO-SHOT CLASSIFICATION DETAILS =====")
+    print(f"Input text (first 300 chars):{text[:300]}...")
+    print("\n Zero-shot predictions:")
+
+    label_score_pairs = list(zip(zs_details["labels"],zs_details["scores"]))
+    label_score_pairs.sort(key=lambda x:x[1], reverse=True)
+
+    for label, score in label_score_pairs:
+        print(f"  {label}: {score:.4f}")
+
+        if score > 0.9:
+            confidence = "HIGH"
+        elif score > 0.7:
+            confidence = "MEDIUM"
+        elif score > 0.5:
+            confidence = "LOW"
+        else:
+            confidence = "VERY LOW"
+        print(f".   Confidence: {confidence}")
+    
+    print("=" * 30)
 
     if use_ensemble:
         # Embedding similarity against richer label descriptions
         es = embedding_similarity_scores(text, SDG_DESCS)
-        scores = ensemble_scores(zs, es, alpha=0.6) 
+        scores = ensemble_scores(zs, es, alpha=0.8) 
+
+        print("\n ENSEMBLE COMBINATION ===")
+        print("Combining zero-shot + embedding similarity scores....")
+        for i, name in enumerate(SDG_NAMES):
+            print(f"{name}:")
+            print(f" Zero-shot: {zs[i]:.4f}")
+            print(f" Embedding: {es[i]:.4f}")
+            print(f" Final (80% ZS + 20% Emb): {scores[i]:.4f}")
     else:
         scores = zs
 
@@ -179,7 +217,9 @@ def classify_repo(url: str, threshold: float = 0.4, top_k: int = 10, use_ensembl
     }
 
 def main(url: str):
-    result = classify_repo(url, threshold=0.4, use_ensemble=True)
+   
+    result = classify_repo(url, threshold=0.5, use_ensemble=True)
+    print("Results:", result)
     predictions = {
         "repository_name": result["repo"],
         "repository_url": url,
@@ -194,3 +234,7 @@ def main(url: str):
         print(f"  - {name}: {sc:.3f}")
     
     return predictions
+
+# if __name__ == "__main__":
+#     url = "https://github.com/processing/p5.js"
+#     main(url) 

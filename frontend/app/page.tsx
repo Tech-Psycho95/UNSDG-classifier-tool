@@ -12,13 +12,12 @@ import MainScreen from "@/components/mainScreen";
  *
  * Flow:
  * 1. User enters GitHub repository URL
- * 2. App calls Flask backend for AI analysis
- * 3. Results show SDG predictions with confidence levels
- * 4. User can edit predictions via modal interface
- * 5. User can create GitHub PR with analysis results
+ * 2. Application looks for SDG.md file in the repo and extracts content out of it
+ * 3. App calls Flask backend for analysis
+ * 4. Results show SDG predictions with confidence levels
+ * 5. User can edit predictions via modal interface
  */
 export default function Home() {
-  // Core application state
   const [githubUrl, setGithubUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState<{

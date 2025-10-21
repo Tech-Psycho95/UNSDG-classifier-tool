@@ -1,0 +1,127 @@
+===== ZERO-SHOT CLASSIFICATION DETAILS =====
+Input text (first 300 chars):envo
+A community-driven ontology for the representation of environments
+data-management data-science earth-science ecoinformatics ecology environment esip obofoundry ontology planetary-science semantics sustainable-development-goals
+http://www.environmentontology.org
+[![Build Status](https://travis-...)]
+
+ Zero-shot predictions:
+  SDG 10: Reduced Inequalities: 0.9402
+.   Confidence: HIGH
+  SDG 17: Partnerships for the Goals: 0.9337
+.   Confidence: HIGH
+  SDG 12: Responsible Consumption and Production: 0.9217
+.   Confidence: HIGH
+  SDG 16: Peace, Justice and Strong Institutions: 0.8976
+.   Confidence: MEDIUM
+  SDG 3: Good Health and Well-being: 0.8404
+.   Confidence: MEDIUM
+  SDG 13: Climate Action: 0.8332
+.   Confidence: MEDIUM
+  SDG 11: Sustainable Cities and Communities: 0.8197
+.   Confidence: MEDIUM
+  SDG 7: Affordable and Clean Energy: 0.8173
+.   Confidence: MEDIUM
+  SDG 8: Decent Work and Economic Growth: 0.8149
+.   Confidence: MEDIUM
+  SDG 5: Gender Equality: 0.7556
+.   Confidence: MEDIUM
+  SDG 6: Clean Water and Sanitation: 0.7471
+.   Confidence: MEDIUM
+  SDG 9: Industry, Innovation and Infrastructure: 0.7429
+.   Confidence: MEDIUM
+  SDG 15: Life on Land: 0.6913
+.   Confidence: LOW
+  SDG 14: Life Below Water: 0.6052
+.   Confidence: LOW
+  SDG 4: Quality Education: 0.4898
+.   Confidence: VERY LOW
+  SDG 2: Zero Hunger: 0.4275
+.   Confidence: VERY LOW
+  SDG 1: No Poverty: 0.3156
+.   Confidence: VERY LOW
+==============================
+
+ ENSEMBLE COMBINATION ===
+Combining zero-shot + embedding similarity scores....
+SDG 1: No Poverty:
+ Zero-shot: 0.9402
+ Embedding: 0.0693
+ Final (90% ZS + 10% Emb): 0.7660
+SDG 2: Zero Hunger:
+ Zero-shot: 0.9337
+ Embedding: 0.3919
+ Final (90% ZS + 10% Emb): 0.8253
+SDG 3: Good Health and Well-being:
+ Zero-shot: 0.9217
+ Embedding: 0.0000
+ Final (90% ZS + 10% Emb): 0.7374
+SDG 4: Quality Education:
+ Zero-shot: 0.8976
+ Embedding: 0.2070
+ Final (90% ZS + 10% Emb): 0.7594
+SDG 5: Gender Equality:
+ Zero-shot: 0.8404
+ Embedding: 0.1036
+ Final (90% ZS + 10% Emb): 0.6930
+SDG 6: Clean Water and Sanitation:
+ Zero-shot: 0.8332
+ Embedding: 0.4819
+ Final (90% ZS + 10% Emb): 0.7630
+SDG 7: Affordable and Clean Energy:
+ Zero-shot: 0.8197
+ Embedding: 0.5280
+ Final (90% ZS + 10% Emb): 0.7614
+SDG 8: Decent Work and Economic Growth:
+ Zero-shot: 0.8173
+ Embedding: 0.4024
+ Final (90% ZS + 10% Emb): 0.7343
+SDG 9: Industry, Innovation and Infrastructure:
+ Zero-shot: 0.8149
+ Embedding: 0.4976
+ Final (90% ZS + 10% Emb): 0.7514
+SDG 10: Reduced Inequalities:
+ Zero-shot: 0.7556
+ Embedding: 0.0009
+ Final (90% ZS + 10% Emb): 0.6047
+SDG 11: Sustainable Cities and Communities:
+ Zero-shot: 0.7471
+ Embedding: 0.5412
+ Final (90% ZS + 10% Emb): 0.7059
+SDG 12: Responsible Consumption and Production:
+ Zero-shot: 0.7429
+ Embedding: 0.6447
+ Final (90% ZS + 10% Emb): 0.7233
+SDG 13: Climate Action:
+ Zero-shot: 0.6913
+ Embedding: 0.6616
+ Final (90% ZS + 10% Emb): 0.6854
+SDG 14: Life Below Water:
+ Zero-shot: 0.6052
+ Embedding: 0.8189
+ Final (90% ZS + 10% Emb): 0.6479
+SDG 15: Life on Land:
+ Zero-shot: 0.4898
+ Embedding: 1.0000
+ Final (90% ZS + 10% Emb): 0.5919
+SDG 16: Peace, Justice and Strong Institutions:
+ Zero-shot: 0.4275
+ Embedding: 0.3422
+ Final (90% ZS + 10% Emb): 0.4104
+SDG 17: Partnerships for the Goals:
+ Zero-shot: 0.3156
+ Embedding: 0.4823
+ Final (90% ZS + 10% Emb): 0.3489
+Results: {'repo': 'EnvironmentOntology/envo', 'predictions': [('SDG 2: Zero Hunger', 0.8253475368022919), ('SDG 1: No Poverty', 0.7660015912726522), ('SDG 6: Clean Water and Sanitation', 0.762989628314972), ('SDG 7: Affordable and Clean Energy', 0.7613574028015138), ('SDG 4: Quality Education', 0.7594361953437329), ('SDG 9: Industry, Innovation and Infrastructure', 0.7513979449868202), ('SDG 3: Good Health and Well-being', 0.7373806476593018), ('SDG 8: Decent Work and Economic Growth', 0.734313389658928), ('SDG 12: Responsible Consumption and Production', 0.7232914417982101), ('SDG 11: Sustainable Cities and Communities', 0.7058788448572159)], 'top_all': [('SDG 2: Zero Hunger', 0.8253475368022919), ('SDG 1: No Poverty', 0.7660015912726522), ('SDG 6: Clean Water and Sanitation', 0.762989628314972), ('SDG 7: Affordable and Clean Energy', 0.7613574028015138), ('SDG 4: Quality Education', 0.7594361953437329), ('SDG 9: Industry, Innovation and Infrastructure', 0.7513979449868202), ('SDG 3: Good Health and Well-being', 0.7373806476593018), ('SDG 8: Decent Work and Economic Growth', 0.734313389658928), ('SDG 12: Responsible Consumption and Production', 0.7232914417982101), ('SDG 11: Sustainable Cities and Communities', 0.7058788448572159)], 'meta': {'name': 'envo', 'description': 'A community-driven ontology for the representation of environments', 'topics': ['data-management', 'data-science', 'earth-science', 'ecoinformatics', 'ecology', 'environment', 'esip', 'obofoundry', 'ontology', 'planetary-science', 'semantics', 'sustainable-development-goals'], 'homepage': 'http://www.environmentontology.org'}}
+Repository: EnvironmentOntology/envo
+Predicted SDGs (name, score):
+  - SDG 2: Zero Hunger: 0.825
+  - SDG 1: No Poverty: 0.766
+  - SDG 6: Clean Water and Sanitation: 0.763
+  - SDG 7: Affordable and Clean Energy: 0.761
+  - SDG 4: Quality Education: 0.759
+  - SDG 9: Industry, Innovation and Infrastructure: 0.751
+  - SDG 3: Good Health and Well-being: 0.737
+  - SDG 8: Decent Work and Economic Growth: 0.734
+  - SDG 12: Responsible Consumption and Production: 0.723
+  - SDG 11: Sustainable Cities and Communities: 0.706
