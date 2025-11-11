@@ -4,7 +4,7 @@ import json
 
 def main(text: str):
     try:
-        url = "https://aurora-sdg.labs.vu.nl/classifier/classify/aurora-sdg-multi"
+        url = "https://aurora-sdg.labs.vu.nl/classifier/classify/elsevier-sdg-multi"
         payload = json.dumps({"text": text})
         headers = {'Content-Type': 'application/json' }
         response = requests.request("POST", url, headers=headers, data=payload)

@@ -1,0 +1,8 @@
+{
+  "projectName": "p5.js",
+  "projectUrl": "https://github.com/processing/p5.js",
+  "problemStatement": "There is a need for accessible, inclusive, and easy-to-learn tools that allow people of all backgrounds to create interactive art and creative web experiences. Many creative coding platforms are either too complex or lack strong community support and diverse learning resources.",
+  "longTermGoal": "The project aims to continue fostering a global community where creative expression through code is open, welcoming, and barrier-free. It seeks to maintain and expand p5.js as a foundational tool for creative coding education, collaboration, and artistic exploration.",
+  "solutionApproach": "p5.js provides a beginner-friendly JavaScript library with extensive documentation, tutorials, and a web-based editor to make coding visually interactive projects easy and approachable. The project also grows through open-source contributions and community-created libraries that extend functionality and creative possibilities.",
+  "targetAudience": "The platform is designed for artists, students, educators, designers, hobbyists, and anyone interested in learning or teaching creative coding. It also appeals to diverse communities around the world who value inclusivity, open access, and collaborative creativity through technology."
+}
