@@ -1,16 +1,6 @@
 import React from "react";
 import { RiErrorWarningFill } from "react-icons/ri";
-
-type ErrorProps = {
-  error: string | null;
-  setError: (error: string | null) => void;
-  setResults: (
-    results: {
-      sdg_predictions?: Record<string, number>;
-      [key: string]: unknown;
-    } | null
-  ) => void;
-};
+import { ErrorProps } from "@/types/main";
 
 const Error: React.FC<ErrorProps> = ({ error, setError, setResults }) => {
   return (

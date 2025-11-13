@@ -6,12 +6,11 @@ import axios from "axios";
 import { TiTick } from "react-icons/ti";
 import { ImCross } from "react-icons/im";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { ResultsData } from "@/types/main";
 
 const MainScreen: React.FC<{
-  setResults: React.Dispatch<React.SetStateAction<string | null>>;
+  setResults: React.Dispatch<React.SetStateAction<ResultsData | null>>;
 }> = ({ setResults }) => {
-  // const fileInputRef = useRef<HTMLInputElement>(null);
-  // const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadMsg, setUploadMsg] = useState<string | null>(null);
 
@@ -22,19 +21,8 @@ const MainScreen: React.FC<{
   const [solutionApproach, setSolutionApproach] = useState("");
   const [targetAudience, setTargetAudience] = useState("");
 
-  // const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const file = e.target.files?.[0] || null;
-  //   setSelectedFile(file);
-  //   setUploadMsg(null);
-  // };
-
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // handleInteract();
-    // if (!selectedFile) {
-    //   setUploadMsg("Please upload an SDG.md file before submitting.");
-    //   return;
-    // }
 
     if (
       !projectName ||
@@ -61,12 +49,6 @@ const MainScreen: React.FC<{
       solutionApproach: solutionApproach,
       targetAudience: targetAudience,
     };
-    // const formData = new FormData();
-    // formData.append("project_name", projectName);
-    // formData.append("project_url", projectUrl);
-    // if (selectedFile) {w
-    //   formData.append("file", selectedFile);
-    // }
 
     try {
       setIsUploading(true);
@@ -245,51 +227,6 @@ const MainScreen: React.FC<{
                 className="w-full bg-white px-6 py-4 rounded-2xl border border-gray-200 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
               />
             </div>
-
-            {/* File Upload */}
-            {/* <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                SDG.md file
-                <span className="text-red-500 ml-1">*</span>
-              </label>
-
-              <div className="relative">
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept=".md, text/markdown"
-                  onChange={handleFileChange}
-                  className="hidden"
-                />
-                <button
-                  type="button"
-                  onClick={() => fileInputRef.current?.click()}
-                  disabled={isUploading}
-                  className="w-full bg-white  px-6 py-4 border-2 border-dashed border-gray-300 rounded-2xl hover:border-purple-500 hover:bg-purple-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 text-left flex items-center justify-between"
-                >
-                  <span className="text-gray-600">
-                    {selectedFile ? (
-                      <span className="flex items-center gap-2">
-                        <SlCloudUpload className="w-5 h-5 text-purple-600" />
-                        <span className="font-medium text-purple-700">
-                          {selectedFile.name}
-                        </span>
-                      </span>
-                    ) : (
-                      "Click to upload your SDG.md file"
-                    )}
-                  </span>
-
-                  <SlCloudUpload className="w-5 h-5 text-gray-400" />
-                </button>
-              </div>
-
-              {selectedFile && (
-                <p className="mt-2 text-sm text-gray-500">
-                  File size: {(selectedFile.size / 1024).toFixed(2)} KB
-                </p>
-              )}
-            </div> */}
 
             {/* Upload Message */}
             {uploadMsg && (

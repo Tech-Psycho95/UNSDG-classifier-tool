@@ -1,8 +1,5 @@
 import React from "react";
-
-type RawResultsProps = {
-  results: unknown;
-};
+import { RawResultsProps } from "@/types/main";
 
 const RawResults: React.FC<RawResultsProps> = ({ results }) => {
   return (

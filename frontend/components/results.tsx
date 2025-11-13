@@ -1,32 +1,10 @@
 import { useState } from "react";
 import { MdDone } from "react-icons/md";
 import CardGrid from "./cardGrid";
-import SummaryCard from "./summaryCard";
+// import SummaryCard from "./summaryCard";
 import RawResults from "./rawResults";
 import EditModal from "./editModal";
-
-// add local SDGValue type to match editModal
-type SDGValue = {
-  prediction: number;
-  sdg?: {
-    "@type"?: string;
-    code?: string;
-    icon?: string;
-    id?: string;
-    label?: string;
-    name?: string;
-    type?: string;
-    [k: string]: any;
-  };
-};
-
-type ResultsData = {
-  projectUrl?: string;
-  projectName?: string;
-  // predictions now can be the object shape produced by the classifier / editor
-  predictions?: Record<string, SDGValue> | Record<string, number>;
-  [key: string]: unknown;
-};
+import { SDGValue, ResultsData } from "@/types/main";
 
 type ResultsProps = {
   results: ResultsData | null;
@@ -43,15 +21,16 @@ const Results = ({ results, setResults, setError }: ResultsProps) => {
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const getScore = (v: any) =>
-    typeof v === "number" ? Number(v) : Number(v?.prediction ?? 0);
+  const getScore = (v: number | SDGValue | null | undefined) =>
+    typeof v === "number"
+      ? Number(v)
+      : Number((v as SDGValue)?.prediction ?? 0);
 
   const saveEditedResults = () => {
     // Update the results with edited values
     if (results) {
       setResults({
         ...results,
-        // store the full editableResults object into results.predictions
         predictions: { ...(editableResults ?? {}) },
       });
     }
@@ -67,9 +46,8 @@ const Results = ({ results, setResults, setError }: ResultsProps) => {
   const handleChanges = () => {
     // Open modal with current SDG predictions for editing
     if (results?.predictions) {
-      // normalize predictions into the SDGValue shape if they are plain numbers
       const normalized: Record<string, SDGValue> = {};
-      Object.entries(results.predictions as Record<string, any>).forEach(
+      Object.entries(results.predictions as Record<string, number | SDGValue>).forEach(
         ([k, v]) => {
           if (typeof v === "number") {
             normalized[k] = { prediction: v };
@@ -89,7 +67,7 @@ const Results = ({ results, setResults, setError }: ResultsProps) => {
       return;
     }
     try {
-      const predictions = results.predictions as Record<string, any>;
+      const predictions = results.predictions as Record<string, number | SDGValue>;
       const unsdgData = {
         sdg_analysis: {
           analyzed_at: new Date().toISOString(),

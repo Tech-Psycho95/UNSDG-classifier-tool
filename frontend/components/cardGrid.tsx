@@ -1,31 +1,5 @@
 import React from "react";
-
-type SDGValue = {
-  prediction: number;
-  sdg?: {
-    "@type"?: string;
-    code?: string;
-    icon?: string;
-    id?: string;
-    label?: string;
-    name?: string;
-    type?: string;
-    [k: string]: any;
-  };
-};
-
-type SDGData = {
-  prediction: number;
-  sdg: {
-    "@type": string;
-    code: string;
-    icon: string;
-    id: string;
-    label: string;
-    name: string;
-    type: string;
-  };
-};
+import { SDGValue } from "@/types/main";
 
 type SDGCardProps = {
   sdgKey: string;
@@ -33,7 +7,10 @@ type SDGCardProps = {
 };
 
 type CardGridProps = {
-  sdgPredictions: SDGData[] | Record<string, SDGValue>;
+  sdgPredictions?:
+    | SDGValue[]
+    | Record<string, SDGValue>
+    | Record<string, number>;
 };
 
 const SDGCard = ({ sdgKey, confidence }: SDGCardProps) => {
@@ -129,9 +106,9 @@ const SDGCard = ({ sdgKey, confidence }: SDGCardProps) => {
 
 const CardGrid = ({ sdgPredictions }: CardGridProps) => {
   // Convert object to array if needed
-  const predictionsArray: SDGData[] = Array.isArray(sdgPredictions)
+  const predictionsArray: SDGValue[] = Array.isArray(sdgPredictions)
     ? sdgPredictions
-    : (Object.values(sdgPredictions)
+    : (Object.values(sdgPredictions ?? {})
         .filter((item) => item?.sdg && item.prediction > 0)
         .map((item) => ({
           prediction: item.prediction,
@@ -144,9 +121,7 @@ const CardGrid = ({ sdgPredictions }: CardGridProps) => {
             name: item.sdg.name || "",
             type: item.sdg.type || "Goal",
           },
-        })) as SDGData[]);
-
-  console.log("SDG Predictions:", predictionsArray);
+        })) as SDGValue[]);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
