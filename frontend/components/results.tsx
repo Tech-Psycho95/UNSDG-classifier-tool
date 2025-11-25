@@ -12,7 +12,7 @@ type ResultsProps = {
 };
 
 const Results = ({ results, setResults, setError }: ResultsProps) => {
-  // editableResults holds the full SDGValue objects (not just numbers)
+  // editableResults holds the full SDGValue objects 
   const [editableResults, setEditableResults] = useState<
     Record<string, SDGValue>
   >({});

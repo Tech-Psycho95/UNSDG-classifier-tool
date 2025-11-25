@@ -16,10 +16,11 @@ const MainScreen: React.FC<{
 
   const [projectName, setProjectName] = useState("");
   const [projectUrl, setProjectUrl] = useState("");
-  const [problemStatement, setProblemStatement] = useState("");
-  const [longTermGoal, setLongTermGoal] = useState("");
-  const [solutionApproach, setSolutionApproach] = useState("");
-  const [targetAudience, setTargetAudience] = useState("");
+  const [projectDescription, setProjectDescription] = useState("");
+  // const [problemStatement, setProblemStatement] = useState("");
+  // const [longTermGoal, setLongTermGoal] = useState("");
+  // const [solutionApproach, setSolutionApproach] = useState("");
+  // const [targetAudience, setTargetAudience] = useState("");
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,10 +28,11 @@ const MainScreen: React.FC<{
     if (
       !projectName ||
       !projectUrl ||
-      !problemStatement ||
-      !longTermGoal ||
-      !solutionApproach ||
-      !targetAudience
+      !projectDescription
+      // !problemStatement ||
+      // !longTermGoal ||
+      // !solutionApproach ||
+      // !targetAudience
     ) {
       setUploadMsg("Please fill in all required fields before submitting.");
       return;
@@ -44,10 +46,11 @@ const MainScreen: React.FC<{
     const finalizedData = {
       projectName: projectName,
       projectUrl: projectUrl,
-      problemStatement: problemStatement,
-      longTermGoal: longTermGoal,
-      solutionApproach: solutionApproach,
-      targetAudience: targetAudience,
+      projectDescription: projectDescription,
+      // problemStatement: problemStatement,
+      // longTermGoal: longTermGoal,
+      // solutionApproach: solutionApproach,
+      // targetAudience: targetAudience,
     };
 
     try {
@@ -152,8 +155,28 @@ const MainScreen: React.FC<{
               />
             </div>
 
-            {/* Problem Statement */}
+            {/* Project Description */}
             <div>
+              <label
+                htmlFor="projectDescription"
+                className="block text-sm font-semibold text-gray-700 mb-2 "
+              >
+                SDG Relevance Description
+                <span className="text-red-500 ml-1">*</span>
+              </label>
+              <textarea
+                id="projectDescription"
+                value={projectDescription}
+                onChange={(e) => setProjectDescription(e.target.value)}
+                placeholder="Please write a description of your project's relevance to the UN SDGs"
+                required
+                rows={12}
+                className="w-full bg-white px-6 py-4 rounded-2xl border border-gray-200 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+              />
+            </div>
+
+            {/* Problem Statement */}
+            {/* <div>
               <label
                 htmlFor="problemStatement"
                 className="block text-sm font-semibold text-gray-700 mb-2"
@@ -169,10 +192,10 @@ const MainScreen: React.FC<{
                 required
                 className="w-full bg-white px-6 py-4 rounded-2xl border border-gray-200 text-gray-700 placeholder-gray-400 focus:outline-none  focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
               />
-            </div>
+            </div> */}
 
             {/* Long Term Goal */}
-            <div>
+            {/* <div>
               <label
                 htmlFor="longTermGoal"
                 className="block text-sm font-semibold text-gray-700 mb-2"
@@ -188,10 +211,10 @@ const MainScreen: React.FC<{
                 required
                 className="w-full bg-white px-6 py-4 rounded-2xl border border-gray-200 text-gray-700 placeholder-gray-400 focus:outline-none  focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
               />
-            </div>
+            </div> */}
 
             {/* Solution Approach */}
-            <div>
+            {/* <div>
               <label
                 htmlFor="solutionApproach"
                 className="block text-sm font-semibold text-gray-700 mb-2"
@@ -207,10 +230,10 @@ const MainScreen: React.FC<{
                 required
                 className="w-full bg-white px-6 py-4 rounded-2xl border border-gray-200 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
               />
-            </div>
+            </div> */}
 
             {/* Target Audience */}
-            <div>
+            {/* <div>
               <label
                 htmlFor="targetAudience"
                 className="block text-sm font-semibold text-gray-700 mb-2 "
@@ -226,7 +249,7 @@ const MainScreen: React.FC<{
                 required
                 className="w-full bg-white px-6 py-4 rounded-2xl border border-gray-200 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
               />
-            </div>
+            </div> */}
 
             {/* Upload Message */}
             {uploadMsg && (
