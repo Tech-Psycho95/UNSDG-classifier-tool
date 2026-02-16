@@ -164,15 +164,11 @@ def classify_repo(url: str, threshold: float = 0.4, top_k: int = 10, use_ensembl
     # Zero-shot on label NAMES *and* include SDG descriptions for embedding sim
     zs, zs_details = zero_shot_scores(text, SDG_NAMES)
 
-    print("===== ZERO-SHOT CLASSIFICATION DETAILS =====")
-    print(f"Input text (first 300 chars):{text[:300]}...")
-    print("\n Zero-shot predictions:")
 
     label_score_pairs = list(zip(zs_details["labels"],zs_details["scores"]))
     label_score_pairs.sort(key=lambda x:x[1], reverse=True)
 
     for label, score in label_score_pairs:
-        print(f"  {label}: {score:.4f}")
 
         if score > 0.9:
             confidence = "HIGH"
@@ -182,22 +178,14 @@ def classify_repo(url: str, threshold: float = 0.4, top_k: int = 10, use_ensembl
             confidence = "LOW"
         else:
             confidence = "VERY LOW"
-        print(f".   Confidence: {confidence}")
     
-    print("=" * 30)
 
     if use_ensemble:
         # Embedding similarity against richer label descriptions
         es = embedding_similarity_scores(text, SDG_DESCS)
         scores = ensemble_scores(zs, es, alpha=0.8) 
 
-        print("\n ENSEMBLE COMBINATION ===")
-        print("Combining zero-shot + embedding similarity scores....")
-        for i, name in enumerate(SDG_NAMES):
-            print(f"{name}:")
-            print(f" Zero-shot: {zs[i]:.4f}")
-            print(f" Embedding: {es[i]:.4f}")
-            print(f" Final (80% ZS + 20% Emb): {scores[i]:.4f}")
+    
     else:
         scores = zs
 
@@ -219,19 +207,15 @@ def classify_repo(url: str, threshold: float = 0.4, top_k: int = 10, use_ensembl
 def main(url: str):
    
     result = classify_repo(url, threshold=0.5, use_ensemble=True)
-    print("Results:", result)
+   
     predictions = {
-        "repository_name": result["repo"],
-        "repository_url": url,
-        "repository_owner": result["repo"].split("/")[0],
+        "project_name": result["repo"],
+        "project_url": url,
         "sdg_predictions": {
             name: float(f"{score:.3f}") for (name, score) in result["predictions"]
         }
     }
-    print("Repository:", result["repo"])
-    print("Predicted SDGs (name, score):")
-    for name, sc in result["predictions"]:
-        print(f"  - {name}: {sc:.3f}")
+  
     
     return predictions
 
