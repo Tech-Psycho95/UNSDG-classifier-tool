@@ -82,113 +82,113 @@ body:
       description: Enter Organisation Name
       multiple: false
       options:
-        - label: Agami
-        - label: Argusoft
-        - label: ARMMAN
-        - label: Avanti Fellows
-        - label: Bandhu
-        - label: Beckn
-        - label: Belongg
-        - label: Blockster Global (CREDBEL)
-        - label: Blockster Labs / AyanWorks
-        - label: CBoard
-        - label: CHAOSS
-        - label: CHAOSS Africa + GWU
-        - label: Civis
-        - label: ConveGenius
-        - label: Consul Democracy
-        - label: COSS
-        - label: CranberryFit
-        - label: Development Gateway
-        - label: DHIS2
-        - label: Dhiway
-        - label: Dhwani
-        - label: Digital Green
-        - label: Digital India
-        - label: Dimagi
-        - label: Drupal
-        - label: Education Initiative
-        - label: eGov
-        - label: EkShop Marketplace
-        - label: FIDE
-        - label: FinternetLabs
-        - label: Flywheel
-        - label: GovDirectory
-        - label: Haqdarshak
-        - label: Healthsites.io
-        - label: IDinsight
-        - label: If Me
-        - label: IIIT Delhi
-        - label: IIT Bombay
-        - label: IIT Delhi
-        - label: Impactyaan
-        - label: Indus Action
-        - label: Intel Health
-        - label: Key Education Foundation
-        - label: Khushi Baby
-        - label: Learning Economy
-        - label: Linux Foundation
-        - label: Mecha Systems
-        - label: Medic Mobile
-        - label: Medtronic Labs
-        - label: MetaBrainz
-        - label: Mifos
-        - label: Mojaloop
-        - label: MOSIP
-        - label: NASSCOM Foundation
-        - label: NHA
-        - label: NIUA
-        - label: Norwegian Meteorological Institute
-        - label: NSUT x SEETA x AIC
-        - label: ONDC
-        - label: ONEST
-        - label: Open Healthcare Network
-        - label: OpenCRVS
-        - label: OpenFn
-        - label: OpenIMIS
-        - label: OpenMRS
-        - label: OpenSPP
-        - label: Piramal Swasthya
-        - label: Planet Read
-        - label: Policy Engine
-        - label: Pratham Books
-        - label: Project Second Chance
-        - label: Project Tech4Dev
-        - label: Protean
-        - label: RCTS-IIITH
-        - label: Reap Benefit
-        - label: Resolve to Save Lives
-        - label: Rocket Learning
-        - label: Rumsan
-        - label: Sahamati
-        - label: SamagraX
-        - label: Samanvay Foundation
-        - label: Sampatti Card
-        - label: Sanketika
-        - label: ShikshaLokam
-        - label: SimPPL
-        - label: Sugar Labs
-        - label: Swasth Alliance
-        - label: Swecha
-        - label: Tarento
-        - label: Tattle
-        - label: Tech4Dev
-        - label: Tekdi
-        - label: The Apprentice Project
-        - label: The Mifos Initiative
-        - label: Thoughtworks
-        - label: Tibil
-        - label: TinkerHub
-        - label: Trustin
-        - label: Tuner Labs
-        - label: TYCIA
-        - label: UNICEF
-        - label: United Nations
-        - label: Ushahidi
-        - label: Win Over Cancer
-        - label: WRI
-        - label: Zendalona
-        - label: Zenysis
-        - label: Arghyam
+        - Agami
+        - Argusoft
+        - ARMMAN
+        - Avanti Fellows
+        - Bandhu
+        - Beckn
+        - Belongg
+        - Blockster Global (CREDBEL)
+        - Blockster Labs / AyanWorks
+        - CBoard
+        - CHAOSS
+        - CHAOSS Africa + GWU
+        - Civis
+        - ConveGenius
+        - Consul Democracy
+        - COSS
+        - CranberryFit
+        - Development Gateway
+        - DHIS2
+        - Dhiway
+        - Dhwani
+        - Digital Green
+        - Digital India
+        - Dimagi
+        - Drupal
+        - Education Initiative
+        - eGov
+        - EkShop Marketplace
+        - FIDE
+        - FinternetLabs
+        - Flywheel
+        - GovDirectory
+        - Haqdarshak
+        - Healthsites.io
+        - IDinsight
+        - If Me
+        - IIIT Delhi
+        - IIT Bombay
+        - IIT Delhi
+        - Impactyaan
+        - Indus Action
+        - Intel Health
+        - Key Education Foundation
+        - Khushi Baby
+        - Learning Economy
+        - Linux Foundation
+        - Mecha Systems
+        - Medic Mobile
+        - Medtronic Labs
+        - MetaBrainz
+        - Mifos
+        - Mojaloop
+        - MOSIP
+        - NASSCOM Foundation
+        - NHA
+        - NIUA
+        - Norwegian Meteorological Institute
+        - NSUT x SEETA x AIC
+        - ONDC
+        - ONEST
+        - Open Healthcare Network
+        - OpenCRVS
+        - OpenFn
+        - OpenIMIS
+        - OpenMRS
+        - OpenSPP
+        - Piramal Swasthya
+        - Planet Read
+        - Policy Engine
+        - Pratham Books
+        - Project Second Chance
+        - Project Tech4Dev
+        - Protean
+        - RCTS-IIITH
+        - Reap Benefit
+        - Resolve to Save Lives
+        - Rocket Learning
+        - Rumsan
+        - Sahamati
+        - SamagraX
+        - Samanvay Foundation
+        - Sampatti Card
+        - Sanketika
+        - ShikshaLokam
+        - SimPPL
+        - Sugar Labs
+        - Swasth Alliance
+        - Swecha
+        - Tarento
+        - Tattle
+        - Tech4Dev
+        - Tekdi
+        - The Apprentice Project
+        - The Mifos Initiative
+        - Thoughtworks
+        - Tibil
+        - TinkerHub
+        - Trustin
+        - Tuner Labs
+        - TYCIA
+        - UNICEF
+        - United Nations
+        - Ushahidi
+        - Win Over Cancer
+        - WRI
+        - Zendalona
+        - Zenysis
+        - Arghyam
     validations:
       required: true
