@@ -2,6 +2,14 @@
 
 An AI-powered tool that analyzes GitHub repositories and determines their alignment with the United Nations Sustainable Development Goals (SDGs). The application provides confidence scores for each of the 17 SDGs and can automatically create pull requests with the analysis results.
 
+## Community
+Please join our bi-weekly zoom call if you are interested in contributing to this project.  Details can be found here:
+[https://teamup.com/event/show/id/roRw4g34gHBc6rc6JgjGYxVHFdCAki/add-to-calendar](https://teamup.com/event/show/id/roRw4g34gHBc6rc6JgjGYxVHFdCAki/add-to-calendar)
+
+David Lippert and Ruth Ikegah are co-chairs of the CHAOSS UN SDG working group.  David is the lead maintainer on this UNSDG-classifier-tool and he is new to maintaining open source software, so please be patient.  In addition, Sunil Shah was the lead developer on this project and he is no longer being paid to work on this effort, so the amount of time he will be able to support our work is unclear.  Nevertheless, we are very excited about what we can accomplish together and our community includes exceptional people from around the globe including members of the United Nations, so we are very happy for you to join us.
+
+Our project is officially listed in the [Code4GoodTech Dedicated Mentoring Program](https://codeforgoodtech.in/dedicated-mentoring-program/) for this summer 2026.  Please follow their process to apply for the single intern position.
+
 ## Features
 
 - 🔍 **Repository Analysis**: Analyzes GitHub repositories using AI to determine SDG alignment
